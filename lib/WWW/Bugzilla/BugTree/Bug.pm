@@ -110,6 +110,6 @@ sub summary_tree
 
 =head1 SEE ALSO
 
-L<WWW::Bugzilla::BugTree>
+L<bug_tree>, L<WWW::Bugzilla::BugTree>
 
 =cut

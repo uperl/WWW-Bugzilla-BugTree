@@ -1,0 +1,110 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use v5.10;
+use WWW::Bugzilla::BugTree;
+use Getopt::Long qw( GetOptions );
+use Pod::Usage qw( pod2usage );
+use URI;
+use Term::ANSIColor;
+
+# PODNAME: release-bug_comment
+# ABSTRACT: Comment on a bug
+# VERSION
+
+=head1 SYNOPSIS
+
+ % bug_tree --bug bug_id [ --url url ]
+ % bug_tree --help | -h
+ % bug_tree --version
+
+=head1 DESCRIPTION
+
+FIXME
+
+=head1 OPTIONS
+
+=head2 --bug I<bug_id> | -b I<bug_id>
+
+The Bugzilla bug id of the root bug to display.
+
+=head2 --url I<url> | -u I<url>
+
+The URL of the Bugzilla website.
+
+=head2 --help | -h
+
+Display help for this command
+
+=head2 --version
+
+Display the version for this command
+
+=head1 SEE ALSO
+
+L<WWW::Bugzilla::BugTree>, L<WWW::Bugzilla::BugTree::Bug>
+
+=cut
+
+my $url;
+my $bug_id;
+
+GetOptions(
+  'bug|b=i'      => \$bug_id,
+  'url|u=s'      => \$url,
+  'help|h'       => sub { pod2usage({ -verbose => 2}) },
+  'version'      => sub {
+    say 'WWW::Bugzilla::BugTree version ', ($WWW::Bugzilla::BugTree::VERSION // 'dev');
+    exit 1;
+  },
+) || pod2usage(1);
+
+pod2usage(1) unless defined $bug_id;
+
+my $tree = WWW::Bugzilla::BugTree->new(
+  url => $url,
+);
+
+my $bug = $tree->fetch($bug_id);
+
+recurse($bug, '');
+
+sub recurse
+{
+  my($bug, $indent) = @_;
+
+  if(-t STDOUT)
+  {
+    my $status = $bug->as_hashref->{bug}->{bug_status};
+    if($status eq 'RESOLVED')
+    {
+      print color 'yellow';
+    }
+    elsif($status eq 'VERIFIED')
+    {
+      print color 'green';
+    }
+    elsif($status eq 'CLOSED')
+    {
+      print color 'bold green';
+    }
+    else
+    {
+      print color 'bold red';
+    }
+  }
+  
+  print $indent;
+  
+  print $bug;
+  
+  if(-t STDOUT)
+  {
+    print color 'reset';
+  }
+  
+  print "\n";
+  
+  recurse($_, "$indent  ") for @{ $bug->children };
+}

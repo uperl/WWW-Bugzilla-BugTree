@@ -43,15 +43,17 @@ be converted into a L<URI>.
 
 =cut
 
+my $default_url = "https://landfill.bugzilla.org/bugzilla-3.6-branch";
+
 has url => (
   is      => 'ro',
   lazy    => 1,
   default => sub {
     require URI;
-    URI->new("https://landfill.bugzilla.org/bugzilla-3.6-branch");
+    URI->new($default_url);
   },
   coerce  => sub {
-    ref $_[0] ? $_[0] : do { require URI; URI->new($_[0]) },
+    ref $_[0] ? $_[0] : do { require URI; URI->new($_[0] // $default_url) },
   },
 );
 
@@ -127,7 +129,7 @@ sub clear_cache
 
 =head1 SEE ALSO
 
-L<WWW::Bugzilla::BugTree::Bug>
+L<bug_tree>, L<WWW::Bugzilla::BugTree::Bug>
 
 =cut
 

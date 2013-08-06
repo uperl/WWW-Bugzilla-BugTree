@@ -42,7 +42,7 @@ Clears out the cache.
 
 =head1 SEE ALSO
 
-L<WWW::Bugzilla::BugTree::Bug>
+L<bug_tree>, L<WWW::Bugzilla::BugTree::Bug>
 
 =head1 AUTHOR
 
