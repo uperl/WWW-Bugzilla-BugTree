@@ -8,6 +8,42 @@ WWW::Bugzilla::BugTree - Fetch a tree of bugzilla bugs blocking a bug
 
 version 0.01
 
+=head1 SYNOPSIS
+
+FIXME
+
+=head1 DESCRIPTION
+
+FIXME
+
+=head1 ATTRIBUTES
+
+=head2 ua
+
+Instance of L<LWP::UserAgent> used to fetch information from the
+bugzilla server.
+
+=head2 url
+
+The URI of the bugzilla server.  You may pass in to the constructor
+either a string or a L<URI> object.  If you use a string it will
+be converted into a L<URI>.
+
+=head1 METHODS
+
+=head2 $tree-E<gt>fetch( $id )
+
+Fetch the bug tree for the bug specified by the given C<id>.  Returns
+an instance of L<WWW::Bugzilla::BugTree::Bug>.
+
+=head2 $tree-E<gt>clear_cache
+
+Clears out the cache.
+
+=head1 SEE ALSO
+
+L<WWW::Bugzilla::BugTree::Bug>
+
 =head1 AUTHOR
 
 Graham Ollis <plicease@cpan.org>

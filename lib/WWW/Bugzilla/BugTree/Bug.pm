@@ -8,15 +8,42 @@ use warnings NONFATAL => 'all';
 use XML::Simple qw( XMLin );
 use overload '""' => sub { shift->as_string };
 
+# ABSTRACT: A bug tree returned from WWW::Bugzilla::BugTree
+# VERSION
+
+=head1 DESCRIPTION
+
+FIXME
+
+=head1 ATTRIBUTES
+
+=head2 url
+
+The URL of the bug.
+
+=cut
+
 has url => (
   is       => 'ro',
   required => 1,
 );
 
+=head2 res
+
+The raw L<HTTP::Response> object for the bug.
+
+=cut
+
 has res => (
   is       => 'ro',
   required => 1,
 );
+
+=head2 id
+
+The bug id for the bug.
+
+=cut
 
 has id => (
   is       => 'ro',
@@ -33,11 +60,32 @@ has as_hashref => (
   },
 );
 
+=head2 children
+
+The list of bugs that are blocking this one.
+This is a list of L<WWW::Bugzilla::BugTree::Bug> objects.
+
+=cut
+
 has children => (
   is       => 'ro',
   init_arg => undef,
   default  => sub { [] },
 );
+
+=head2 as_string
+
+Returns a human readable form of the string in the form of
+
+ "id status (resolution) subject"
+
+if it has been resolved, and 
+
+ "id status subject"
+
+otherwise.
+
+=cut
 
 sub as_string
 {
@@ -59,3 +107,9 @@ sub summary_tree
 }
 
 1;
+
+=head1 SEE ALSO
+
+L<WWW::Bugzilla::BugTree>
+
+=cut

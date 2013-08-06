@@ -9,6 +9,23 @@ use warnings NONFATAL => 'all';
 # ABSTRACT: Fetch a tree of bugzilla bugs blocking a bug
 # VERSION
 
+=head1 SYNOPSIS
+
+FIXME
+
+=head1 DESCRIPTION
+
+FIXME
+
+=head1 ATTRIBUTES
+
+=head2 ua
+
+Instance of L<LWP::UserAgent> used to fetch information from the
+bugzilla server.
+
+=cut
+
 has ua => (
   is      => 'ro',
   lazy    => 1,
@@ -17,6 +34,14 @@ has ua => (
     LWP::UserAgent->new
   },
 );
+
+=head2 url
+
+The URI of the bugzilla server.  You may pass in to the constructor
+either a string or a L<URI> object.  If you use a string it will
+be converted into a L<URI>.
+
+=cut
 
 has url => (
   is      => 'ro',
@@ -35,6 +60,15 @@ has _cache => (
   default  => sub { { } },
   init_arg => undef,  
 );
+
+=head1 METHODS
+
+=head2 $tree-E<gt>fetch( $id )
+
+Fetch the bug tree for the bug specified by the given C<id>.  Returns
+an instance of L<WWW::Bugzilla::BugTree::Bug>.
+
+=cut
 
 sub fetch
 {
@@ -77,6 +111,12 @@ sub fetch
   $b;
 }
 
+=head2 $tree-E<gt>clear_cache
+
+Clears out the cache.
+
+=cut
+
 sub clear_cache
 {
   my($self) = @_;
@@ -84,3 +124,10 @@ sub clear_cache
 }
 
 1;
+
+=head1 SEE ALSO
+
+L<WWW::Bugzilla::BugTree::Bug>
+
+=cut
+
