@@ -89,9 +89,13 @@ sub recurse
     {
       print color 'bold green';
     }
-    else
+    elsif($status eq 'NEW')
     {
       print color 'bold red';
+    }
+    else
+    {
+      print color 'red';
     }
   }
   
