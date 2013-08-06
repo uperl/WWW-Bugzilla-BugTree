@@ -2,19 +2,27 @@ use strict;
 use warnings;
 use Test::More;
 use WWW::Bugzilla::BugTree;
-use LWP::UserAgent;
-use LWP::UserAgent::Snapshot;
 
-# TODO: use ::Snapshot if installed,
-# otherwise use the real website.
-LWP::UserAgent::Snapshot->record_to(undef);
-LWP::UserAgent::Snapshot->mock_from('t/data/1');
+my $ua;
+if(eval q{ use LWP::UserAgent::Snapshot; 1 })
+{
+  LWP::UserAgent::Snapshot->record_to(undef);
+  LWP::UserAgent::Snapshot->mock_from('t/data/1');
+  $ua = LWP::UserAgent::Snapshot->new;
+  note 'using LWP::UserAgent::Snapshot';
+}
+else
+{
+  require LWP::UserAgent;
+  $ua = LWP::UserAgent->new;
+  note 'using LWP::UserAgent';
+}
 
 foreach my $ver (qw( 3.6 4.0 4.2 4.4 ))
 {
   my $tree = WWW::Bugzilla::BugTree->new(
     url => "https://landfill.bugzilla.org/bugzilla-$ver-branch/",
-    ua  => LWP::UserAgent::Snapshot->new,
+    ua  => $ua,
   );
   
   isa_ok $tree, 'WWW::Bugzilla::BugTree';
@@ -39,8 +47,10 @@ foreach my $ver (qw( 3.6 4.0 4.2 4.4 ))
     isa_ok $b->summary_tree, 'ARRAY', 'b.summary_tree';
     
     # TODO: only do this if we have YAML
-    use YAML ();
-    note YAML::Dump($b->summary_tree);
+    if(eval q{ use YAML; 1 })
+    {
+      note YAML::Dump($b->summary_tree);
+    }
   };
 }
 
