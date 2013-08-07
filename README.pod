@@ -10,11 +10,31 @@ version 0.01
 
 =head1 SYNOPSIS
 
-FIXME
+ use WWW::Bugzilla::BugTree;
+ 
+ my $tree = WWW::Bugzilla::BugTree->new(
+   url => 'http://bugzilla
+ );
+ 
+ # $bug isa WWW::Bugzilla::BugTree::Bug
+ my $bug = $tree->fetch(749922);
+ print $bug;
+ foreach my $subbug (@{ $bug->children })
+ {
+   print $bug;
+ }
 
 =head1 DESCRIPTION
 
-FIXME
+This module provides a way to fetch a tree of dependent bugs from Bugzilla.
+You give it a bug id and it returns a tree of all the bugs that bug depends
+on (or all the bugs that are blocking your bug).  I wrote this to use the
+C<XML> output of Bugzilla's C<show_bug.cgi> page because we are still using
+Bugzilla 3.6, which doesn't provide dependency information via its API, which
+would probably be faster.
+
+There is also a companion script L<bug_tree> which will print out the tree
+for you with pretty colors indicating each bug's status.
 
 =head1 ATTRIBUTES
 
@@ -28,6 +48,12 @@ bugzilla server.
 The URI of the bugzilla server.  You may pass in to the constructor
 either a string or a L<URI> object.  If you use a string it will
 be converted into a L<URI>.
+
+If not provided it falls back to using the C<BUG_TREE_URL> environment
+variable, and if that isn't set it uses this bugzilla provided for
+testing:
+
+L<https://landfill.bugzilla.org/bugzilla-3.6-branch>
 
 =head1 METHODS
 

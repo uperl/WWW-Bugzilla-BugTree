@@ -13,7 +13,9 @@ use overload '""' => sub { shift->as_string };
 
 =head1 DESCRIPTION
 
-FIXME
+This class represents an individual bug returned from L<WWW::Bugzilla::BugTree>'s C<fetch> method.
+It is also a tree since it has a C<children> accessor which returns the list of bugs that block
+this bug.
 
 =head1 ATTRIBUTES
 

@@ -21,7 +21,8 @@ use Term::ANSIColor;
 
 =head1 DESCRIPTION
 
-FIXME
+This script prints out a tree (with colors if available) of dependent bugs
+from your Bugzilla server.
 
 =head1 OPTIONS
 
@@ -31,7 +32,11 @@ The Bugzilla bug id of the root bug to display.
 
 =head2 --url I<url> | -u I<url>
 
-The URL of the Bugzilla website.
+The URL of the Bugzilla website.  Uses the C<BUG_TREE_URL> environment
+variable if this option not provided, and falls back on this bugzilla
+server provided for testing:
+
+L<https://landfill.bugzilla.org/bugzilla-3.6-branch>
 
 =head2 --help | -h
 
