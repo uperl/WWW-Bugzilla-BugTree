@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.02      2013-08-07 06:42:05 America/New_York
   - added BUG_TREE_USER environment variable for bug_tree script
 
 0.01      2013-08-07 06:31:21 America/New_York
