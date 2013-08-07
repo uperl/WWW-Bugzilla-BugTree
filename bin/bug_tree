@@ -15,7 +15,7 @@ use Term::ANSIColor;
 
 =head1 SYNOPSIS
 
- % bug_tree --bug bug_id [ --url url ]
+ % bug_tree --bug bug_id [ --url url ] [ --ssl-no-verify-hostname ]
  % bug_tree --help | -h
  % bug_tree --version
 
@@ -38,6 +38,13 @@ server provided for testing:
 
 L<https://landfill.bugzilla.org/bugzilla-3.6-branch>
 
+=head2 --ssl-no-verify-hostname
+
+Do not verify the hostname for SSL connections.  This allows for servers
+that use self signed certificates.  If you get a "500 Can't connect" error
+trying to connect to a C<https> server that you know to work, then this
+option may do the trick.
+
 =head2 --help | -h
 
 Display help for this command
@@ -54,12 +61,14 @@ L<WWW::Bugzilla::BugTree>, L<WWW::Bugzilla::BugTree::Bug>
 
 my $url;
 my $bug_id;
+my $ssl = 0;
 
 GetOptions(
-  'bug|b=i'      => \$bug_id,
-  'url|u=s'      => \$url,
-  'help|h'       => sub { pod2usage({ -verbose => 2}) },
-  'version'      => sub {
+  'bug|b=i'                => \$bug_id,
+  'url|u=s'                => \$url,
+  'ssl-no-verify-hostname' => \$ssl,
+  'help|h'                 => sub { pod2usage({ -verbose => 2}) },
+  'version'                => sub {
     say 'WWW::Bugzilla::BugTree version ', ($WWW::Bugzilla::BugTree::VERSION // 'dev');
     exit 1;
   },
@@ -68,6 +77,7 @@ GetOptions(
 pod2usage(1) unless defined $bug_id;
 
 my $tree = WWW::Bugzilla::BugTree->new(
+  ua  => LWP::UserAgent::AskForPassword->new( $ssl ? (ssl_opts => { verify_hostname => 0 } ) : () ),
   url => $url,
 );
 
@@ -116,4 +126,24 @@ sub recurse
   print "\n";
   
   recurse($_, "$indent  ") for @{ $bug->children };
+}
+
+package LWP::UserAgent::AskForPassword;
+
+use base qw( LWP::UserAgent );
+use Term::Clui qw( ask ask_password );
+
+sub get_basic_credentials
+{
+  my($ua, $realm, $uri, $isproxy) = @_;
+  say STDERR $uri->host, ':', $uri->port;
+  my $user;
+  my $pass;
+  eval {
+    local $SIG{INT} = sub { die };
+    $user = ask          "bugzilla user [$realm]:";
+    $pass = ask_password "bugzilla password:";
+  };
+  return () if $@;
+  return ($user, $pass);
 }

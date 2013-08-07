@@ -134,7 +134,7 @@ sub fetch
   $dependson = [ $dependson ]
     unless ref $dependson eq 'ARRAY';
     
-  @{ $b->children } = map { $self->fetch($_) } @$dependson;
+  @{ $b->children } = map { $self->fetch($_) } sort @$dependson;
   
   $b;
 }
