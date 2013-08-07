@@ -86,7 +86,12 @@ GetOptions(
 pod2usage(1) unless defined $bug_id;
 
 my $tree = WWW::Bugzilla::BugTree->new(
-  ua  => LWP::UserAgent::AskForPassword->new( $ssl ? (ssl_opts => { verify_hostname => 0 } ) : () ),
+  ua  => do {
+    my $ua = LWP::UserAgent::AskForPassword->new(
+      $ssl ? (ssl_opts => { verify_hostname => 0 } ) : () );
+    $ua->env_proxy;
+    $ua;
+  },
   url => $url,
 );
 
