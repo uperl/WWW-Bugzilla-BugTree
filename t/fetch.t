@@ -15,6 +15,7 @@ else
 {
   require LWP::UserAgent;
   $ua = LWP::UserAgent->new;
+  $ua->env_proxy;
   note 'using LWP::UserAgent';
 }
 

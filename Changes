@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - use proxy if http_proxy is set
 
 0.02      2013-08-07 06:42:05 America/New_York
   - added BUG_TREE_USER environment variable for bug_tree script

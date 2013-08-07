@@ -51,7 +51,9 @@ has ua => (
   lazy    => 1,
   default => sub {
     require LWP::UserAgent;
-    LWP::UserAgent->new
+    my $ua = LWP::UserAgent->new;
+    $ua->env_proxy;
+    $ua;
   },
 );
 
