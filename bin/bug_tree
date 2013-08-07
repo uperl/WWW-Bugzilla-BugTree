@@ -24,6 +24,12 @@ use Term::ANSIColor;
 This script prints out a tree (with colors if available) of dependent bugs
 from your Bugzilla server.
 
+This script will prompt you for a username or password if the server requires
+HTTP Basic authentication ( If you set the environment variable
+C<BUG_TREE_USER> to your bugzilla username then it will just prompt you for
+a password).  It will not attempt to login if your server does
+not require you to login to view bugs.
+
 =head1 OPTIONS
 
 =head2 --bug I<bug_id> | -b I<bug_id>
@@ -58,6 +64,9 @@ Display the version for this command
 L<WWW::Bugzilla::BugTree>, L<WWW::Bugzilla::BugTree::Bug>
 
 =cut
+
+# TODO: what to do when server doesn't require basic auth,
+# but there is a protected bug in the queue?
 
 my $url;
 my $bug_id;
@@ -141,8 +150,8 @@ sub get_basic_credentials
   my $pass;
   eval {
     local $SIG{INT} = sub { die };
-    $user = ask          "bugzilla user [$realm]:";
-    $pass = ask_password "bugzilla password:";
+    $user = $ENV{BUG_TREE_USER} // ask          "bugzilla user [$realm]:";
+    $pass =                        ask_password "bugzilla password [$realm $user]:";
   };
   return () if $@;
   return ($user, $pass);

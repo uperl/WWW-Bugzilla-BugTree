@@ -11,6 +11,7 @@ pod_spelling_system:
     - SSL
     - ssl
     - hostname
+    - login
 
 pod_coverage:
   # format is "Class#method" or "Class", regex allowed
