@@ -14,7 +14,7 @@ use warnings NONFATAL => 'all';
  use WWW::Bugzilla::BugTree;
  
  my $tree = WWW::Bugzilla::BugTree->new(
-   url => 'http://bugzilla
+   url => 'http://bugzilla',
  );
  
  # $bug isa WWW::Bugzilla::BugTree::Bug
