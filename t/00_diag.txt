@@ -1,0 +1,10 @@
+ExtUtils::MakeMaker
+Getopt::Long
+LWP::UserAgent
+Moo
+Pod::Usage
+Term::ANSIColor
+Term::Clui
+Test::More
+URI
+XML::Simple
