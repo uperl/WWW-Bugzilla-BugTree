@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.03      2013-10-10 10:49:40 -0400
   - use proxy if http_proxy is set
 
 0.02      2013-08-07 06:42:05 America/New_York
