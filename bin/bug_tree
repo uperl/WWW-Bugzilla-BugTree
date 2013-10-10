@@ -9,8 +9,8 @@ use Pod::Usage qw( pod2usage );
 use URI;
 use Term::ANSIColor;
 
-# PODNAME: release-bug_comment
-# ABSTRACT: Comment on a bug
+# PODNAME: bug_tree
+# ABSTRACT: Print a bugzilla tree out to stdout
 # VERSION
 
 =head1 SYNOPSIS
