@@ -27,21 +27,21 @@ on (or all the bugs that are blocking your bug).  I wrote this to use the
 Bugzilla 3.6, which doesn't provide dependency information via its API, which
 would probably be faster.
 
-There is also a companion script [bug\_tree](http://search.cpan.org/perldoc?bug\_tree) which will print out the tree
+There is also a companion script [bug\_tree](https://metacpan.org/pod/bug_tree) which will print out the tree
 for you with pretty colors indicating each bug's status.
 
 # ATTRIBUTES
 
 ## ua
 
-Instance of [LWP::UserAgent](http://search.cpan.org/perldoc?LWP::UserAgent) used to fetch information from the
+Instance of [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent) used to fetch information from the
 bugzilla server.
 
 ## url
 
 The URI of the bugzilla server.  You may pass in to the constructor
-either a string or a [URI](http://search.cpan.org/perldoc?URI) object.  If you use a string it will
-be converted into a [URI](http://search.cpan.org/perldoc?URI).
+either a string or a [URI](https://metacpan.org/pod/URI) object.  If you use a string it will
+be converted into a [URI](https://metacpan.org/pod/URI).
 
 If not provided it falls back to using the `BUG_TREE_URL` environment
 variable, and if that isn't set it uses this bugzilla provided for
@@ -54,7 +54,7 @@ testing:
 ## $tree->fetch( $id )
 
 Fetch the bug tree for the bug specified by the given `id`.  Returns
-an instance of [WWW::Bugzilla::BugTree::Bug](http://search.cpan.org/perldoc?WWW::Bugzilla::BugTree::Bug).
+an instance of [WWW::Bugzilla::BugTree::Bug](https://metacpan.org/pod/WWW::Bugzilla::BugTree::Bug).
 
 ## $tree->clear\_cache
 
@@ -62,7 +62,7 @@ Clears out the cache.
 
 # SEE ALSO
 
-[bug\_tree](http://search.cpan.org/perldoc?bug\_tree), [WWW::Bugzilla::BugTree::Bug](http://search.cpan.org/perldoc?WWW::Bugzilla::BugTree::Bug)
+[bug\_tree](https://metacpan.org/pod/bug_tree), [WWW::Bugzilla::BugTree::Bug](https://metacpan.org/pod/WWW::Bugzilla::BugTree::Bug)
 
 # AUTHOR
 
