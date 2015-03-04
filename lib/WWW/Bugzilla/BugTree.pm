@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use v5.10;
 use Moo;
-use warnings NONFATAL => 'all';
 
 # ABSTRACT: Fetch a tree of bugzilla bugs blocking a bug
 # VERSION

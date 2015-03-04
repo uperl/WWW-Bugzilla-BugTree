@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use v5.10;
 use Moo;
-use warnings NONFATAL => 'all';
 use XML::Simple qw( XMLin );
 use overload '""' => sub { shift->as_string };
 

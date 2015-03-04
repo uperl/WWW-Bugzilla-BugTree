@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Require Moo 2.0, as older versions inadvertently turn on
+    fatal warnings
 
 0.03      2013-10-10 10:49:40 -0400
   - use proxy if http_proxy is set
