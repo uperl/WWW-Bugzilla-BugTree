@@ -107,7 +107,7 @@ sub fetch
     if exists $self->_cache->{$bug_id};
   
   my $url = $self->url->clone;
-  $url->path($url->path =~ s{/$}{}r) . "/show_bug.cgi");
+  $url->path(($url->path =~ s{/$}{}r) . "/show_bug.cgi");
   $url->query_form(
     id    => $bug_id,
     ctype => 'xml',
