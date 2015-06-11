@@ -2,7 +2,7 @@ package WWW::Bugzilla::BugTree::Bug;
 
 use strict;
 use warnings;
-use v5.10;
+use 5.014;
 use Moo;
 use XML::Simple qw( XMLin );
 use overload '""' => sub { shift->as_string };

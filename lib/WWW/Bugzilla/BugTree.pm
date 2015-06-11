@@ -2,7 +2,7 @@ package WWW::Bugzilla::BugTree;
 
 use strict;
 use warnings;
-use v5.10;
+use 5.014;
 use Moo;
 
 # ABSTRACT: Fetch a tree of bugzilla bugs blocking a bug
@@ -107,10 +107,7 @@ sub fetch
     if exists $self->_cache->{$bug_id};
   
   my $url = $self->url->clone;
-  my $path = $url->path;
-  $path =~ s{/$}{};
-  $path .= "/show_bug.cgi";
-  $url->path($path);
+  $url->path($url->path =~ s{/$}{}r) . "/show_bug.cgi");
   $url->query_form(
     id    => $bug_id,
     ctype => 'xml',
