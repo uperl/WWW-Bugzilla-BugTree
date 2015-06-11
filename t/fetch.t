@@ -19,7 +19,7 @@ else
   note 'using LWP::UserAgent';
 }
 
-foreach my $ver (qw( 3.6 4.0 4.2 4.4 ))
+foreach my $ver (qw( 4.0 4.2 4.4 ))
 {
   my $tree = WWW::Bugzilla::BugTree->new(
     url => "https://landfill.bugzilla.org/bugzilla-$ver-branch/",

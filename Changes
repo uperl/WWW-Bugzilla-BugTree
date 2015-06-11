@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - No longer test against 3.6 landfill since it is no longer available
 
 0.04      2015-03-03 23:44:58 -0500
   - Require Moo 2.0, as older versions inadvertently turn on
