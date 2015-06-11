@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.05      2015-06-11 13:22:08 -0400
   - No longer test against 3.6 landfill since it is no longer available
   - Require Perl 5.14
 
