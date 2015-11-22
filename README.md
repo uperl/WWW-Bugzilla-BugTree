@@ -34,10 +34,14 @@ for you with pretty colors indicating each bug's status.
 
 ## ua
 
+    my $lwp = $tree->ua;
+
 Instance of [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent) used to fetch information from the
 bugzilla server.
 
 ## url
+
+    my$url = $tree->url
 
 The URI of the bugzilla server.  You may pass in to the constructor
 either a string or a [URI](https://metacpan.org/pod/URI) object.  If you use a string it will
@@ -51,12 +55,16 @@ testing:
 
 # METHODS
 
-## $tree->fetch( $id )
+## fetch
+
+    my $bug = $tree->fetch($id);
 
 Fetch the bug tree for the bug specified by the given `id`.  Returns
 an instance of [WWW::Bugzilla::BugTree::Bug](https://metacpan.org/pod/WWW::Bugzilla::BugTree::Bug).
 
-## $tree->clear\_cache
+## clear\_cache
+
+    $tree->clear_cache;
 
 Clears out the cache.
 
@@ -66,7 +74,7 @@ Clears out the cache.
 
 # AUTHOR
 
-Graham Ollis <plicease@cpan.org>
+Graham Ollis &lt;plicease@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
