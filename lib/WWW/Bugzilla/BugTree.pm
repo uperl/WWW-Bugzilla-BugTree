@@ -40,6 +40,8 @@ for you with pretty colors indicating each bug's status.
 
 =head2 ua
 
+ my $lwp = $tree->ua;
+
 Instance of L<LWP::UserAgent> used to fetch information from the
 bugzilla server.
 
@@ -57,6 +59,8 @@ has ua => (
 );
 
 =head2 url
+
+ my$url = $tree->url
 
 The URI of the bugzilla server.  You may pass in to the constructor
 either a string or a L<URI> object.  If you use a string it will
@@ -92,7 +96,9 @@ has _cache => (
 
 =head1 METHODS
 
-=head2 $tree-E<gt>fetch( $id )
+=head2 fetch
+
+ my $bug = $tree->fetch($id);
 
 Fetch the bug tree for the bug specified by the given C<id>.  Returns
 an instance of L<WWW::Bugzilla::BugTree::Bug>.
@@ -137,7 +143,9 @@ sub fetch
   $b;
 }
 
-=head2 $tree-E<gt>clear_cache
+=head2 clear_cache
+
+ $tree->clear_cache;
 
 Clears out the cache.
 

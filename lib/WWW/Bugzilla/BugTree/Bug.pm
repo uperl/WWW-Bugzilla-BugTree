@@ -20,6 +20,8 @@ this bug.
 
 =head2 url
 
+ my $url = $bug->url;
+
 The URL of the bug.
 
 =cut
@@ -31,6 +33,8 @@ has url => (
 
 =head2 res
 
+ my $res = $bug->res;
+
 The raw L<HTTP::Response> object for the bug.
 
 =cut
@@ -41,6 +45,8 @@ has res => (
 );
 
 =head2 id
+
+ my $id = $bug->id;
 
 The bug id for the bug.
 
@@ -63,6 +69,8 @@ has as_hashref => (
 
 =head2 children
 
+ my @children = $bug->children->@*;
+
 The list of bugs that are blocking this one.
 This is a list of L<WWW::Bugzilla::BugTree::Bug> objects.
 
@@ -75,6 +83,9 @@ has children => (
 );
 
 =head2 as_string
+
+ my $string = $bug->as_string;
+ my $string = "$bug";
 
 Returns a human readable form of the string in the form of
 
