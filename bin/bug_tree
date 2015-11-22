@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use 5.014;
+use 5.012;
 use WWW::Bugzilla::BugTree;
 use Getopt::Long qw( GetOptions );
 use Pod::Usage qw( pod2usage );
