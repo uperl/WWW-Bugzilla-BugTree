@@ -51,7 +51,7 @@ If not provided it falls back to using the `BUG_TREE_URL` environment
 variable, and if that isn't set it uses this bugzilla provided for
 testing:
 
-[https://landfill.bugzilla.org/bugzilla-3.6-branch](https://landfill.bugzilla.org/bugzilla-3.6-branch)
+[Bugzilla v4.2](https://landfill.bugzilla.org/bugzilla-4.2-branch)
 
 # METHODS
 
