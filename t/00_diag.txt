@@ -1,8 +1,0 @@
-ExtUtils::MakeMaker
-LWP::UserAgent
-Moo
-Term::ANSIColor
-Term::Clui
-Test::More
-URI
-XML::Simple
