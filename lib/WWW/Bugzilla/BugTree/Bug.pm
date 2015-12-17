@@ -62,7 +62,7 @@ has as_hashref => (
   init_arg => undef,
   lazy     => 1,
   default  => sub {
-    $DB::single = 1;
+    no warnings;
     XMLin(shift->res->decoded_content);
   },
 );
