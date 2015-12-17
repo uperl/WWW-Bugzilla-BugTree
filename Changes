@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.07      2015-12-17 08:24:12 -0500
   - Do not test against landfil 4.0 anymore, it is gonners!
   - Use Ref::Util for ref testing
 
