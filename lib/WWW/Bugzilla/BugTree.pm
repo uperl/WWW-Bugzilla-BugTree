@@ -2,6 +2,7 @@ package WWW::Bugzilla::BugTree;
 
 use strict;
 use warnings;
+use Ref::Util qw( is_arrayref );
 use 5.012;
 use Moo;
 
@@ -136,7 +137,7 @@ sub fetch
   my $dependson = $b->as_hashref->{bug}->{dependson};
   $dependson = [] unless defined $dependson;
   $dependson = [ $dependson ]
-    unless ref $dependson eq 'ARRAY';
+    unless is_arrayref $dependson;
     
   @{ $b->children } = map { $self->fetch($_) } sort @$dependson;
   
