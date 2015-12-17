@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use 5.012;
+use open ':std', ':encoding(utf8)';
 use Test::More;
 use WWW::Bugzilla::BugTree;
 
