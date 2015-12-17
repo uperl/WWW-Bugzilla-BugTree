@@ -71,11 +71,11 @@ If not provided it falls back to using the C<BUG_TREE_URL> environment
 variable, and if that isn't set it uses this bugzilla provided for
 testing:
 
-L<https://landfill.bugzilla.org/bugzilla-3.6-branch>
+L<Bugzilla v4.2|https://landfill.bugzilla.org/bugzilla-4.2-branch>
 
 =cut
 
-my $default_url = $ENV{BUG_TREE_URL} // "https://landfill.bugzilla.org/bugzilla-3.6-branch";
+my $default_url = $ENV{BUG_TREE_URL} // "https://landfill.bugzilla.org/bugzilla-4.2-branch";
 
 has url => (
   is      => 'ro',
