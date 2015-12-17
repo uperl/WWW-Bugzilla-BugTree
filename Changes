@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Do not test against landfil 4.0 anymore, it is gonners!
+  - Use Ref::Util for ref testing
 
 0.06      2015-11-22 15:42:45 -0500
   - Pull required Perl back to 0.012
