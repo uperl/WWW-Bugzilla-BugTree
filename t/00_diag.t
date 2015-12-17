@@ -17,6 +17,7 @@ $modules{$_} = $_ for qw(
   Term::ANSIColor
   Term::Clui
   Test::More
+  Test::Script
   URI
   XML::Simple
 );
