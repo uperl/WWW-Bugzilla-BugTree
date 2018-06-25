@@ -5,7 +5,7 @@ use open ':std', ':encoding(utf8)';
 use Test::More;
 use WWW::Bugzilla::BugTree;
 
-plan skip_all => 'landfil is no longer available';
+plan skip_all => 'landfill is no longer available';
 
 my $ua;
 if(eval q{ use LWP::UserAgent::Snapshot; 1 })
