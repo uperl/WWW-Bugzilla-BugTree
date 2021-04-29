@@ -1,22 +1,24 @@
-# WWW::Bugzilla::BugTree [![Build Status](https://secure.travis-ci.org/plicease/WWW-Bugzilla-BugTree.png)](http://travis-ci.org/plicease/WWW-Bugzilla-BugTree)
+# WWW::Bugzilla::BugTree ![linux](https://github.com/uperl/WWW-Bugzilla-BugTree/workflows/linux/badge.svg) ![macos](https://github.com/uperl/WWW-Bugzilla-BugTree/workflows/macos/badge.svg)
 
 Fetch a tree of bugzilla bugs blocking a bug
 
 # SYNOPSIS
 
-    use WWW::Bugzilla::BugTree;
-    
-    my $tree = WWW::Bugzilla::BugTree->new(
-      url => 'http://bugzilla',
-    );
-    
-    # $bug isa WWW::Bugzilla::BugTree::Bug
-    my $bug = $tree->fetch(749922);
-    print $bug;
-    foreach my $subbug (@{ $bug->children })
-    {
-      print $bug;
-    }
+```perl
+use WWW::Bugzilla::BugTree;
+
+my $tree = WWW::Bugzilla::BugTree->new(
+  url => 'http://bugzilla',
+);
+
+# $bug isa WWW::Bugzilla::BugTree::Bug
+my $bug = $tree->fetch(749922);
+print $bug;
+foreach my $subbug (@{ $bug->children })
+{
+  print $bug;
+}
+```
 
 # DESCRIPTION
 
@@ -34,14 +36,18 @@ for you with pretty colors indicating each bug's status.
 
 ## ua
 
-    my $lwp = $tree->ua;
+```perl
+my $lwp = $tree->ua;
+```
 
 Instance of [LWP::UserAgent](https://metacpan.org/pod/LWP::UserAgent) used to fetch information from the
 bugzilla server.
 
 ## url
 
-    my$url = $tree->url
+```perl
+my$url = $tree->url
+```
 
 The URI of the bugzilla server.  You may pass in to the constructor
 either a string or a [URI](https://metacpan.org/pod/URI) object.  If you use a string it will
@@ -57,14 +63,18 @@ testing:
 
 ## fetch
 
-    my $bug = $tree->fetch($id);
+```perl
+my $bug = $tree->fetch($id);
+```
 
 Fetch the bug tree for the bug specified by the given `id`.  Returns
 an instance of [WWW::Bugzilla::BugTree::Bug](https://metacpan.org/pod/WWW::Bugzilla::BugTree::Bug).
 
 ## clear\_cache
 
-    $tree->clear_cache;
+```
+$tree->clear_cache;
+```
 
 Clears out the cache.
 
